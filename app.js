@@ -21,9 +21,10 @@ btn__reset.addEventListener('click', () => {
 });
 
 //Function that grabs a phrase from the phrase array
-function stub(array) {
+function getRandomPhrase(array) {
     const randomNum = Math.floor((Math.random() * array.length) + 1);
-    console.log(randomNum);
+    const chosenPhrase = array[randomNum];
+    return chosenPhrase;
 }
 
-stub(phrases);
+console.log(getRandomPhrase(phrases)); /*why are you getting an undefined?*/
