@@ -14,18 +14,24 @@ const phrases = [
     "slow and steady wins the race"
 ];
 
-console.log(phrases);
-
 // Hide screen overlay
 btn__reset.addEventListener('click', () => {
     overlay.style.display = "none";
 });
 
-//Function that grabs a phrase from the phrase array
-function getRandomPhrase(array) {
+//Function that grabs a phrase from the phrase array.
+function getRandomPhraseAsArray(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     const chosenPhrase = array[randomNum];
-    return chosenPhrase;
+    const phraseLetters = chosenPhrase.split('');
+    return phraseLetters; /*Turn the phrase into an array of letters*/
 }
 
-console.log(getRandomPhrase(phrases)); 
+getRandomPhraseAsArray(phrases);
+
+// Function for checking the letter input
+function checkLetter(clickedButton) {
+    const liAll = querySelectorAll('li');
+    console.log(liAll);
+}
+
