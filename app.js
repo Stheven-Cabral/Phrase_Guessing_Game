@@ -32,9 +32,15 @@ const phraseAsArray = getRandomPhraseAsArray(phrases);
 // Function for displaying the phrase array
 function addPhraseToDisplay (array) {
     for (var i = 0; i < array.length; i++) {
+        const alphaExp = /^[a-zA-Z]+$/;
         const newLI = document.createElement("LI");
         newLI.textContent = array[i];
+        if (newLI.textContent.match(alphaExp)) {
+            newLI.className = "letter";
+        }
+
         const phraseDisplay = document.querySelector("#phrase ul");
+        phraseDisplay.appendChild(newLI);
         console.log(phraseDisplay);
     }
 }
@@ -43,8 +49,24 @@ addPhraseToDisplay(phraseAsArray);
 
 
 // Function for checking the letter input
-// function checkLetter(clickedButton) {
-//     const liAll = querySelectorAll('li');
-//     console.log(liAll);
-// }
+function checkLetter(event) {
+    const liLetter = document.querySelectorAll('.letter');
+    event.target.classList.add("chosen"); /*When you click on not a letter, it turns chosen as well*/
+    for (var i = 0; i < liLetter.length; i++) {
+        if (liLetter[i] === event.target) {
+            const showLi = liLetter[i].classList.add("show");
+            return showLi; 
+        } else {
+            return null;
+        }
+    }
+}
+
+// Event listener for keyboard button press
+qwerty.addEventListener('click', checkLetter); 
+// Can't seem to get only the letters to be chosen
+
+
+
+
 
