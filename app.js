@@ -24,14 +24,27 @@ function getRandomPhraseAsArray(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     const chosenPhrase = array[randomNum];
     const phraseLetters = chosenPhrase.split('');
-    return phraseLetters; /*Turn the phrase into an array of letters*/
+    return phraseLetters; 
 }
 
-getRandomPhraseAsArray(phrases);
+const phraseAsArray = getRandomPhraseAsArray(phrases);
+
+// Function for displaying the phrase array
+function addPhraseToDisplay (array) {
+    for (var i = 0; i < array.length; i++) {
+        const newLI = document.createElement("LI");
+        newLI.textContent = array[i];
+        const phraseDisplay = document.querySelector("#phrase ul");
+        console.log(phraseDisplay);
+    }
+}
+
+addPhraseToDisplay(phraseAsArray);
+
 
 // Function for checking the letter input
-function checkLetter(clickedButton) {
-    const liAll = querySelectorAll('li');
-    console.log(liAll);
-}
+// function checkLetter(clickedButton) {
+//     const liAll = querySelectorAll('li');
+//     console.log(liAll);
+// }
 
