@@ -50,19 +50,23 @@ addPhraseToDisplay(phraseAsArray);
 
 // Function for checking the letter input
 function checkLetter(button) {
-    const checkLetter = document.querySelectorAll('.letter');
-    let showLi = null;
-    button.target.classList.add("chosen"); /*When you click on not a letter, it turns chosen as well*/
-    for (var i = 0; i < checkLetter.length; i++) {
-        if (checkLetter[i] === button.target) {
-            showLi = checkLetter[i].classList.add("show");
+    const letters = document.querySelectorAll('.letter');
+    let match = null;
+    for (var i = 0; i < letters.length; i++) {
+        if (letters[i] === button.textContent) {
+            letters[i].classList.add("show");
+            match = letters[i];
         }
     }
-    return showLi;
+    return match;
 }
 
 // Event listener for keyboard button press
-qwerty.addEventListener('click', checkLetter); 
+qwerty.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') {
+        e.target.classList.add('chosen');
+    }
+}); 
 // Can't seem to get only the letters to be chosen
 
 
