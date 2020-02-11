@@ -67,6 +67,7 @@ qwerty.addEventListener('click', e => {
         e.target.classList.add('chosen');
     }
 }); 
+
 // Can't seem to get only the letters to be chosen
 
 
