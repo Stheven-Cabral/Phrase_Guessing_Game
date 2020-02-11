@@ -49,17 +49,16 @@ addPhraseToDisplay(phraseAsArray);
 
 
 // Function for checking the letter input
-function checkLetter(event) {
-    const liLetter = document.querySelectorAll('.letter');
-    event.target.classList.add("chosen"); /*When you click on not a letter, it turns chosen as well*/
-    for (var i = 0; i < liLetter.length; i++) {
-        if (liLetter[i] === event.target) {
-            const showLi = liLetter[i].classList.add("show");
-            return showLi; 
-        } else {
-            return null;
+function checkLetter(button) {
+    const checkLetter = document.querySelectorAll('.letter');
+    let showLi = null;
+    button.target.classList.add("chosen"); /*When you click on not a letter, it turns chosen as well*/
+    for (var i = 0; i < checkLetter.length; i++) {
+        if (checkLetter[i] === button.target) {
+            showLi = checkLetter[i].classList.add("show");
         }
     }
+    return showLi;
 }
 
 // Event listener for keyboard button press
