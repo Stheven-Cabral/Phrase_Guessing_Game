@@ -107,14 +107,19 @@ function reset () {
     missed = 0;
 
     // Remove previous phrase.
+    const prevPhraseParent = document.querySelector('#phrase ul');
+    const prevPhraseArray = document.querySelectorAll('#phrase li');
+    for (var i = 0; i < prevPhraseArray.length; i++) {
+        prevPhraseParent.removeChild(prevPhraseArray);
+    }
 
     // Add heart lives back to display.
-    // const hearts = document.querySelectorAll('.tries');
-    // for (var i = 0; i < hearts.length; i++) {
-    //     hearts[i].style.display = "inline";
-    // }
+    const hearts = document.querySelectorAll('.tries');
+    for (var i = 0; i < hearts.length; i++) {
+        hearts[i].style.display = "inline";
+    }
 
-    // // Resets the display and buttons.
+    // // Resets the display.
     // const letterReset = document.querySelectorAll('.letter');
     // for (var i = 0; i < letterReset.length; i++) {
     //     letterReset[i].classList.remove("letter");
@@ -125,14 +130,14 @@ function reset () {
     //     shownReset[i].classList.remove("show");
     // }
 
+    // Remove chosen class from the letter buttons.
     const chosenButton = document.querySelectorAll('.chosen');
     for (var i = 0; i < chosenButton.length; i++) {
         chosenButton[i].classList.remove("chosen");
     }
 
     // Add a new phrase to the display
-    addPhraseToDisplay(phraseAsArray);
-
+    addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 }
 
 
