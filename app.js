@@ -31,6 +31,7 @@ const phraseAsArray = getRandomPhraseAsArray(phrases);
 
 // Function for displaying the phrase array
 function addPhraseToDisplay (array) {
+    const phraseDisplay = document.querySelector("#phrase ul");
     for (var i = 0; i < array.length; i++) {
         const alphaExp = /^[a-zA-Z]+$/;
         const newLI = document.createElement("LI");
@@ -39,10 +40,9 @@ function addPhraseToDisplay (array) {
             newLI.className = "letter";
         }
 
-        const phraseDisplay = document.querySelector("#phrase ul");
         phraseDisplay.appendChild(newLI);
-        console.log(phraseDisplay);
     }
+    console.log(phraseDisplay);  /*remove when done*/
 }
 
 addPhraseToDisplay(phraseAsArray);
@@ -53,7 +53,7 @@ function checkLetter(button) {
     const letters = document.querySelectorAll('.letter');
     let match = null;
     for (var i = 0; i < letters.length; i++) {
-        if (letters[i] === button.textContent) {
+        if (letters[i].textContent === button.textContent) {
             letters[i].classList.add("show");
             match = letters[i];
         }
@@ -66,9 +66,10 @@ qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
         e.target.classList.add('chosen');
     }
+    const guess = checkLetter(e.target);
 }); 
 
-// Can't seem to get only the letters to be chosen
+
 
 
 
