@@ -97,6 +97,31 @@ function checkWin() {
     }
 }
 
+// Function for resetting the fame.
+function reset () {
+    // Resets the missed counter.
+    missed = 0;
+
+    // Add heart lives back to display.
+
+    // Resets the display and buttons.
+    const letterReset = document.querySelectorAll('.letter');
+    for (var i = 0; i < letterReset.length; i++) {
+        letterReset[i].classList.remove("letter");
+    }
+
+    const shownReset = document.querySelectorAll('.show');
+    for (var i = 0; i < shownReset.length; i++) {
+        shownReset[i].classList.remove("show");
+    }
+
+    const chosenButton = document.querySelectorAll('.chosen');
+    for (var i = 0; i < chosenButton.length; i++) {
+        chosenButton[i].classList.remove("chosen");
+    }
+
+}
+
 
 
 
