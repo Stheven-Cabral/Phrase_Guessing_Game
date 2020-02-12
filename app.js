@@ -138,6 +138,7 @@ function reset () {
 
     // Add a new phrase to the display
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+    
 }
 
 
