@@ -73,9 +73,8 @@ qwerty.addEventListener('click', e => {
 
     if (guess === null) {
         missed += 1 ;
-        const hearts = document.querySelector('#scoreboard ol');
         const miss = document.querySelector('.tries');
-        hearts.removeChild(miss); /*when you run out of hearts, console error occurs */
+        miss.style.display = "none";
     }
 
     checkWin();
@@ -103,6 +102,10 @@ function reset () {
     missed = 0;
 
     // Add heart lives back to display.
+    const hearts = document.querySelectorAll('.tries');
+    for (var i = 0; i < hearts.length; i++) {
+        hearts[i].style.display = "flex";
+    }
 
     // Resets the display and buttons.
     const letterReset = document.querySelectorAll('.letter');
