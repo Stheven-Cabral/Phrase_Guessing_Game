@@ -72,9 +72,9 @@ qwerty.addEventListener('click', e => {
     const guess = checkLetter(e.target);
 
     if (guess === null) {
+        var miss = document.querySelectorAll('.tries');
+        miss[missed].style.display = "none";
         missed += 1 ;
-        const miss = document.querySelector('.tries');
-        miss.style.display = "none";
     }
 
     checkWin();
@@ -85,6 +85,9 @@ function checkWin() {
     const checkLetters = document.querySelectorAll('.letter');
     const checkShown = document.querySelectorAll('.show');
     const  overlayTitle= document.querySelector('.title');
+
+    btn__reset.textContent = "Reset";
+
     if (checkLetters.length === checkShown.length) {
         overlay.classList.add('win');
         overlayTitle.textContent = 'WINNER';
@@ -94,6 +97,8 @@ function checkWin() {
         overlayTitle.textContent = 'OUT OF LIVES';
         overlay.style.display = "flex";
     }
+
+    btn__reset.addEventListener ('click', reset);
 }
 
 // Function for resetting the fame.
@@ -101,27 +106,32 @@ function reset () {
     // Resets the missed counter.
     missed = 0;
 
+    // Remove previous phrase.
+
     // Add heart lives back to display.
-    const hearts = document.querySelectorAll('.tries');
-    for (var i = 0; i < hearts.length; i++) {
-        hearts[i].style.display = "flex";
-    }
+    // const hearts = document.querySelectorAll('.tries');
+    // for (var i = 0; i < hearts.length; i++) {
+    //     hearts[i].style.display = "inline";
+    // }
 
-    // Resets the display and buttons.
-    const letterReset = document.querySelectorAll('.letter');
-    for (var i = 0; i < letterReset.length; i++) {
-        letterReset[i].classList.remove("letter");
-    }
+    // // Resets the display and buttons.
+    // const letterReset = document.querySelectorAll('.letter');
+    // for (var i = 0; i < letterReset.length; i++) {
+    //     letterReset[i].classList.remove("letter");
+    // }
 
-    const shownReset = document.querySelectorAll('.show');
-    for (var i = 0; i < shownReset.length; i++) {
-        shownReset[i].classList.remove("show");
-    }
+    // const shownReset = document.querySelectorAll('.show');
+    // for (var i = 0; i < shownReset.length; i++) {
+    //     shownReset[i].classList.remove("show");
+    // }
 
     const chosenButton = document.querySelectorAll('.chosen');
     for (var i = 0; i < chosenButton.length; i++) {
         chosenButton[i].classList.remove("chosen");
     }
+
+    // Add a new phrase to the display
+    addPhraseToDisplay(phraseAsArray);
 
 }
 
