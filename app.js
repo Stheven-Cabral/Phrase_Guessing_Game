@@ -38,6 +38,8 @@ function addPhraseToDisplay (array) {
         newLI.textContent = array[i];
         if (newLI.textContent.match(alphaExp)) {
             newLI.className = "letter";
+        } else {
+            newLI.className = "space";
         }
 
         phraseDisplay.appendChild(newLI);
