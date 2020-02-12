@@ -58,6 +58,7 @@ function checkLetter(button) {
             match = letters[i];
         }
     }
+    console.log(match); /*remove when done*/
     return match;
 }
 
@@ -67,8 +68,32 @@ qwerty.addEventListener('click', e => {
         e.target.classList.add('chosen');
     }
     const guess = checkLetter(e.target);
+
+    if (guess === null && missed < 5) {
+        missed += 1 ;
+        const hearts = document.querySelector('#scoreboard ol');
+        const miss = document.querySelector('.tries');
+        hearts.removeChild(miss); /*when you run out of hearts, console error occurs */
+    }
+
+    checkWin();
 }); 
 
+// Function for checking if the player has won.
+function checkWin() {
+    const checkLetters = document.querySelectorAll('.letter');
+    const checkShown = document.querySelectorAll('.show');
+    const  overlayTitle= document.querySelector('.title');
+    if (checkLetters.length === checkShown.length) {
+        overlay.classList.add('win');
+        overlayTitle.textContent = 'WINNER';
+        overlay.style.display = "flex";
+    } else if (missed.value >= 5) {
+        overlay.classList.add('lose');
+        overlayTitle.textContent = 'OUT OF LIVES';
+        overlay.style.display = "flex";
+    }
+}
 
 
 
