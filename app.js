@@ -71,7 +71,7 @@ qwerty.addEventListener('click', e => {
     }
     const guess = checkLetter(e.target);
 
-    if (guess === null && missed < 5) {
+    if (guess === null) {
         missed += 1 ;
         const hearts = document.querySelector('#scoreboard ol');
         const miss = document.querySelector('.tries');
@@ -90,7 +90,7 @@ function checkWin() {
         overlay.classList.add('win');
         overlayTitle.textContent = 'WINNER';
         overlay.style.display = "flex";
-    } else if (missed.value >= 5) {
+    } else if (missed >= 5) {
         overlay.classList.add('lose');
         overlayTitle.textContent = 'OUT OF LIVES';
         overlay.style.display = "flex";
