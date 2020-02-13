@@ -75,7 +75,7 @@ qwerty.addEventListener('click', e => {
         miss[missed].style.display = "none";
         missed += 1 ;
     }
-    // checkWin function called to determine if a player has won or is out of lives.
+    // checkWin function called to determine if a player has won or is out of heart lives.
     checkWin();
 }); 
 
