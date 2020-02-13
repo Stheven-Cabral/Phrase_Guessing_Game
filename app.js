@@ -1,6 +1,5 @@
 // variables
 const qwerty = document.getElementById('qwerty');
-const phrase = document.getElementById('phrase');
 const btn__reset = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 var missed = 0;
@@ -70,7 +69,7 @@ qwerty.addEventListener('click', e => {
 
     const guess = checkLetter(e.target);
 
-    if (guess === null) {
+    if (guess === null && e.target.tagName === 'BUTTON') {
         var miss = document.querySelectorAll('.tries');
         miss[missed].style.display = "none";
         missed += 1 ;
@@ -87,6 +86,7 @@ function checkWin() {
     function addReset() {
         btn__reset.textContent = "Reset";
         btn__reset.addEventListener ('click', reset);
+        
     }
 
     if (checkLetters.length === checkShown.length) {
@@ -128,6 +128,10 @@ function reset () {
 
     // Add a new phrase to the display
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+
+    // Resets the overlay background color.
+    overlay.classList.remove('win');
+    overlay.classList.remove('lose');
     
 }
 
