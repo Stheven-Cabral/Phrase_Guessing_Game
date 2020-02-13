@@ -2,8 +2,8 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const btn__reset = document.querySelector('.btn__reset');
-var missed = 0;  /*Max of 5 incorrect guesses allowed*/
 const overlay = document.getElementById('overlay');
+var missed = 0;
 
 const phrases = [
     "it takes two to tango",
@@ -14,12 +14,12 @@ const phrases = [
     "slow and steady wins the race"
 ];
 
-// Hide screen overlay
+// Hides screen overlay when Start button is clicked.
 btn__reset.addEventListener('click', () => {
     overlay.style.display = "none";
 });
 
-//Function that grabs a phrase from the phrase array.
+//Function that grabs a phrase from the phrase array and converts it to an array of characters.
 function getRandomPhraseAsArray(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     const chosenPhrase = array[randomNum];
@@ -27,9 +27,7 @@ function getRandomPhraseAsArray(array) {
     return phraseLetters; 
 }
 
-const phraseAsArray = getRandomPhraseAsArray(phrases);
-
-// Function for displaying the phrase array
+// Function for displaying the phrase array.
 function addPhraseToDisplay (array) {
     const phraseDisplay = document.querySelector("#phrase ul");
     for (var i = 0; i < array.length; i++) {
@@ -41,16 +39,17 @@ function addPhraseToDisplay (array) {
         } else {
             newLI.className = "space";
         }
-
         phraseDisplay.appendChild(newLI);
     }
-    console.log(phraseDisplay);  /*remove when done*/
 }
 
+
+// Calling the functions that chooses a phrase and displays it.
+const phraseAsArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseAsArray);
 
 
-// Function for checking the letter input
+// Function for checking the letter button inputs.
 function checkLetter(button) {
     const letters = document.querySelectorAll('.letter');
     let match = null;
@@ -60,15 +59,15 @@ function checkLetter(button) {
             match = letters[i];
         }
     }
-    console.log(match); /*remove when done*/
     return match;
 }
 
-// Event listener for keyboard button press
+// Event listener for letter button click.
 qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
         e.target.classList.add('chosen');
     }
+
     const guess = checkLetter(e.target);
 
     if (guess === null) {
@@ -76,32 +75,34 @@ qwerty.addEventListener('click', e => {
         miss[missed].style.display = "none";
         missed += 1 ;
     }
-
+    // checkWin function called to determine if a player has won or is out of lives.
     checkWin();
 }); 
 
-// Function for checking if the player has won.
+// Function that checks if the player has won.
 function checkWin() {
     const checkLetters = document.querySelectorAll('.letter');
     const checkShown = document.querySelectorAll('.show');
     const  overlayTitle= document.querySelector('.title');
-
-    btn__reset.textContent = "Reset";
+    function addReset() {
+        btn__reset.textContent = "Reset";
+        btn__reset.addEventListener ('click', reset);
+    }
 
     if (checkLetters.length === checkShown.length) {
         overlay.classList.add('win');
         overlayTitle.textContent = 'WINNER';
         overlay.style.display = "flex";
+        addReset();
     } else if (missed >= 5) {
         overlay.classList.add('lose');
         overlayTitle.textContent = 'OUT OF LIVES';
         overlay.style.display = "flex";
+        addReset();
     }
-
-    btn__reset.addEventListener ('click', reset);
 }
 
-// Function for resetting the fame.
+// Function for resetting the game.
 function reset () {
     // Resets the missed counter.
     missed = 0;
@@ -113,22 +114,11 @@ function reset () {
         prevPhraseParent.removeChild(prevPhraseArray[i]);
     }
 
-    // Add heart lives back to display.
+    // Add heart lives back to the display.
     const hearts = document.querySelectorAll('.tries');
     for (var i = 0; i < hearts.length; i++) {
         hearts[i].style.display = "inline";
     }
-
-    // // Resets the display.
-    // const letterReset = document.querySelectorAll('.letter');
-    // for (var i = 0; i < letterReset.length; i++) {
-    //     letterReset[i].classList.remove("letter");
-    // }
-
-    // const shownReset = document.querySelectorAll('.show');
-    // for (var i = 0; i < shownReset.length; i++) {
-    //     shownReset[i].classList.remove("show");
-    // }
 
     // Remove chosen class from the letter buttons.
     const chosenButton = document.querySelectorAll('.chosen');
