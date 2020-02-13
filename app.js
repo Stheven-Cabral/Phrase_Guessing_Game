@@ -110,7 +110,7 @@ function reset () {
     const prevPhraseParent = document.querySelector('#phrase ul');
     const prevPhraseArray = document.querySelectorAll('#phrase li');
     for (var i = 0; i < prevPhraseArray.length; i++) {
-        prevPhraseParent.removeChild(prevPhraseArray);
+        prevPhraseParent.removeChild(prevPhraseArray[i]);
     }
 
     // Add heart lives back to display.
